@@ -9,16 +9,15 @@ import React from "react";
 import { Cards, Chart, CountryPicker } from "./components";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
-
+import coronaImage from "./images/corona_image.jpg";
 class App extends React.Component {
     state = {
-        data: {}
+        data: {},
+        country: ""
     };
 
     async componentDidMount() {
         const fetchedData = await fetchData();
-        console.log("fetchedData:");
-        console.log(fetchedData);
         this.setState((prevState) => {
             return {
                 ...prevState,
@@ -27,14 +26,38 @@ class App extends React.Component {
         });
     }
 
+    handleCountry = async (country) => {
+        console.log(country);
+        let fetchedData;
+        if (country === "global") {
+            fetchedData = await fetchData();
+            this.setState((prevState) => {
+                return {
+                    ...prevState,
+                    data: fetchedData,
+                    country: ""
+                };
+            });
+        } else {
+            fetchedData = await fetchData(country);
+            this.setState((prevState) => {
+                return {
+                    ...prevState,
+                    data: fetchedData,
+                    country
+                };
+            });
+        }
+    };
+
     render() {
-        const { data } = this.state;
+        const { data, country } = this.state;
         return (
             <div className={styles.container}>
-                <h1>App</h1>
+                <img src={coronaImage} className={styles.image} alt="COVID-19" />
                 <Cards data={data} />
-                <Chart />
-                <CountryPicker />
+                <CountryPicker handleCountry={this.handleCountry} country={country} />
+                <Chart data={data} country={country} />
             </div>
         );
     }
