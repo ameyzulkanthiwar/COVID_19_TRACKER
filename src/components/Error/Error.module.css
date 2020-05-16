@@ -1,0 +1,11 @@
+.errorImage {
+    height: 97vh;
+    width: 100%;
+}
+
+@media (max-width: 425px) {
+    .errorImage {
+        height: 100%;
+        width: 100%;
+    }
+}

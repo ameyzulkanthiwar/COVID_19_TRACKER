@@ -6,7 +6,11 @@ import className from "classnames";
 
 const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
     if (!confirmed) {
-        return <CircularProgress />;
+        return (
+            <div className={styles.loading}>
+                <CircularProgress />
+            </div>
+        );
     }
     return (
         <div className={styles.container}>

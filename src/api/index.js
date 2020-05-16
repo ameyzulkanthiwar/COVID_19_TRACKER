@@ -23,6 +23,8 @@ export const fetchData = async (country) => {
         };
     } catch (error) {
         console.log("Error:", error);
+        console.log("Error:", error.message);
+        throw new Error({ error: { code: "404", message: "The page could not be found" } });
     }
 };
 

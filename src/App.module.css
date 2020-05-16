@@ -14,3 +14,11 @@ body {
     height: 200px;
     margin: 0px;
 }
+
+.loading {
+    height: calc(100vh - 200px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
