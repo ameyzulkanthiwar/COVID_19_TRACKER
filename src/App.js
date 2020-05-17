@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // importing all the component like this is a hassle
 // import Cards from "./components/Cards/Card";
 // import Chart from "./components/Chart/Chart";
@@ -12,83 +12,61 @@ import coronaImage from "./images/corona_image.jpg";
 
 import styles from "./App.module.css";
 
-class App extends React.Component {
-    state = {
-        data: {},
-        country: "",
-        isLoading: true,
-        isError: false
-    };
+const App = () => {
+    const [data, setData] = useState({});
+    const [country, setCountry] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
 
-    async componentDidMount() {
+    useEffect(() => {
         try {
-            const fetchedData = await fetchData();
-            this.setState((prevState) => {
-                return {
-                    ...prevState,
-                    data: fetchedData,
-                    isLoading: false,
-                    isError: false
-                };
-            });
+            const fetchedData = async () => {
+                const getFetchedData = await fetchData();
+                setData(getFetchedData);
+                setIsLoading(false);
+                setIsError(false);
+            };
+            fetchedData();
         } catch (error) {
-            this.setState((prevState) => {
-                return {
-                    ...prevState,
-                    isError: true
-                };
-            });
+            setIsError(true);
         }
-    }
+    }, []);
 
-    handleCountry = async (country) => {
+    const handleCountry = async (country) => {
         let fetchedData;
         if (country === "global") {
             fetchedData = await fetchData();
-            this.setState((prevState) => {
-                return {
-                    ...prevState,
-                    data: fetchedData,
-                    country: ""
-                };
-            });
+            setData(fetchedData);
+            setCountry("");
         } else {
             fetchedData = await fetchData(country);
-            this.setState((prevState) => {
-                return {
-                    ...prevState,
-                    data: fetchedData,
-                    country
-                };
-            });
+            setData(fetchedData);
+            setCountry(country);
         }
     };
 
-    render() {
-        const { data, country, isError, isLoading } = this.state;
-        if (isError) {
-            return <Error />;
-        }
-
-        return (
-            <div className={styles.container}>
-                <img src={coronaImage} className={styles.image} alt="COVID-19" />
-                {!isError && isLoading ? (
-                    <div className={styles.loading}>
-                        <CircularProgress />
-                        <h1>Loading...</h1>
-                    </div>
-                ) : (
-                    <div className={styles.container}>
-                        <Cards data={data} />
-                        <CountryPicker handleCountry={this.handleCountry} country={country} />
-                        <Chart data={data} country={country} />
-                    </div>
-                )}
-                <Footer />
-            </div>
-        );
+    if (isError) {
+        return <Error />;
     }
-}
+
+    return (
+        <div className={styles.container}>
+            <img src={coronaImage} className={styles.image} alt="COVID-19" />
+            {!isError && isLoading ? (
+                <div className={styles.loading}>
+                    <CircularProgress />
+                    <h1>Loading...</h1>
+                </div>
+            ) : (
+                <div className={styles.container}>
+                    <Cards data={data} />
+                    <CountryPicker handleCountry={handleCountry} country={country} />
+                    <Chart data={data} country={country} />
+                </div>
+            )}
+            <Footer />
+        </div>
+    );
+};
 
 export default App;
