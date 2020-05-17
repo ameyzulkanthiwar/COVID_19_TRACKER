@@ -21,7 +21,7 @@ const App = () => {
     useEffect(() => {
         try {
             const fetchedData = async () => {
-                const getFetchedData = await fetchData();
+                const getFetchedData = await fetchData(country);
                 setData(getFetchedData);
                 setIsLoading(false);
                 setIsError(false);
@@ -30,19 +30,10 @@ const App = () => {
         } catch (error) {
             setIsError(true);
         }
-    }, []);
+    }, [country]);
 
     const handleCountry = async (country) => {
-        let fetchedData;
-        if (country === "global") {
-            fetchedData = await fetchData();
-            setData(fetchedData);
-            setCountry("");
-        } else {
-            fetchedData = await fetchData(country);
-            setData(fetchedData);
-            setCountry(country);
-        }
+        setCountry(country);
     };
 
     if (isError) {
