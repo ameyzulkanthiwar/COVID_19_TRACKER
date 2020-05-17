@@ -6,8 +6,15 @@ import React from "react";
 // import CountryPicker from "./components/CountryPicker/CountryPicker";
 
 // Cleaner way to import the component
-import { Cards, Chart, CountryPicker, Error } from "./components";
-import { Card, Grid, Typography, CardContent, CircularProgress } from "@material-ui/core";
+import { Cards, Chart, CountryPicker, Error, Footer } from "./components";
+import {
+    Card,
+    Grid,
+    Typography,
+    CardContent,
+    BottomNavigation,
+    CircularProgress
+} from "@material-ui/core";
 
 import styles from "./App.module.css";
 import { fetchData } from "./api";
@@ -23,8 +30,6 @@ class App extends React.Component {
     async componentDidMount() {
         try {
             const fetchedData = await fetchData();
-            console.log("APP");
-            console.log(fetchedData);
             this.setState((prevState) => {
                 return {
                     ...prevState,
@@ -34,8 +39,6 @@ class App extends React.Component {
                 };
             });
         } catch (error) {
-            console.log("APP..");
-            console.log(error);
             this.setState((prevState) => {
                 return {
                     ...prevState,
@@ -90,6 +93,7 @@ class App extends React.Component {
                         <Chart data={data} country={country} />
                     </div>
                 )}
+                <Footer />
             </div>
         );
     }

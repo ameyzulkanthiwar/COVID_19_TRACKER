@@ -1,0 +1,19 @@
+footer {
+    width: 100%;
+    background-color: darkgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "ink free";
+    margin-top: 10px;
+}
+
+.containers {
+    padding: 20px 0px !important;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    font-family: "ink free";
+}
