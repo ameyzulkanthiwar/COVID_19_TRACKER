@@ -52,7 +52,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                     className={className(styles.card, styles.recovered)}
                 >
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>
+                        <Typography variant="h5" color="textSecondary" gutterBottom>
                             Recovered
                         </Typography>
                         <Typography variant="h5">
@@ -63,7 +63,6 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                                 separator=","
                             />
                         </Typography>
-
                         <Typography color="textSecondary">
                             {new Date(lastUpdate).toDateString()}
                         </Typography>
@@ -81,7 +80,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                     className={className(styles.card, styles.deaths)}
                 >
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>
+                        <Typography variant="h5" color="textSecondary" gutterBottom>
                             Deaths
                         </Typography>
                         <Typography variant="h5">
@@ -89,8 +88,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                         </Typography>
                         <Typography color="textSecondary">
                             {new Date(lastUpdate).toDateString()}
-                        </Typography>{" "}
-                        <Typography color="textSecondary">REAL DATE</Typography>
+                        </Typography>
                         <Typography variant="body2"> Number of deaths due to COVID-19</Typography>
                     </CardContent>
                 </Grid>
