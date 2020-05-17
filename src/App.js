@@ -49,7 +49,6 @@ class App extends React.Component {
     }
 
     handleCountry = async (country) => {
-        console.log(country);
         let fetchedData;
         if (country === "global") {
             fetchedData = await fetchData();

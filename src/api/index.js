@@ -22,8 +22,6 @@ export const fetchData = async (country) => {
             lastUpdate
         };
     } catch (error) {
-        console.log("Error:", error);
-        console.log("Error:", error.message);
         throw new Error({ error: { code: "404", message: "The page could not be found" } });
     }
 };
@@ -38,7 +36,6 @@ export const fetchDailyData = async () => {
             date
         }));
     } catch (error) {
-        console.log("Error:", error);
         return error;
     }
 };
@@ -48,7 +45,6 @@ export const centuries = async () => {
         const response = await axios.get(`${url}/countries`);
         return response.data;
     } catch (error) {
-        console.log("Error:", error);
         return error;
     }
 };
