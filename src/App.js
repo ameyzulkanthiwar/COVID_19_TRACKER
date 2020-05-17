@@ -1,5 +1,4 @@
 import React from "react";
-
 // importing all the component like this is a hassle
 // import Cards from "./components/Cards/Card";
 // import Chart from "./components/Chart/Chart";
@@ -7,18 +6,12 @@ import React from "react";
 
 // Cleaner way to import the component
 import { Cards, Chart, CountryPicker, Error, Footer } from "./components";
-import {
-    Card,
-    Grid,
-    Typography,
-    CardContent,
-    BottomNavigation,
-    CircularProgress
-} from "@material-ui/core";
-
-import styles from "./App.module.css";
+import { CircularProgress } from "@material-ui/core";
 import { fetchData } from "./api";
 import coronaImage from "./images/corona_image.jpg";
+
+import styles from "./App.module.css";
+
 class App extends React.Component {
     state = {
         data: {},

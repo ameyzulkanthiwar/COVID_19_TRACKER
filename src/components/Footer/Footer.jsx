@@ -1,5 +1,4 @@
 import React from "react";
-import { Card, Grid, Typography, CardContent, CircularProgress } from "@material-ui/core";
 import styles from "./Footer.module.css";
 import className from "classnames";
 
