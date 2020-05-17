@@ -1,5 +1,7 @@
 # COVID-19 TRACKER
 
+![COVID-19 Tracker](./src/images/covid-tracker.JPG)
+
 ### To run project do
 
 ```
